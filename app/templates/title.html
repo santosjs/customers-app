@@ -1,0 +1,74 @@
+<h1 class="text-center">Customers Info</h1><hr>
+<form class="form-horizontal" autoComplete="off">
+  <div class="form-group">
+    <label class="hidden-xs col-sm-4 control-label">Search a Customer</label>
+    <div class="col-xs-6 col-sm-4">
+      <input name="search" type="text" class="form-control" placeholder="Start typing..." ng-model="searchQuery">
+    </div>
+    <div class="col-sm-2">
+      <input type="button" class="btn btn-success" value="{{addCustomer.buttonText}}" ng-click="addCustomer.toggle()">
+    </div>
+  </div>
+</form>
+<div class="container">
+    <form class="form-horizontal" role="form" ng-show="addCustomer.show">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Contact info</label>
+          <div class="col-sm-3">
+            <input id="name" type="text" class="form-control" ng-model="addCustomer.data.name" placeholder="Name">
+          </div>
+          <div class="col-sm-3">
+            <input id="email" type="text" class="form-control" ng-model="addCustomer.data.email" placeholder="E-mail">
+          </div>
+          <div class="col-sm-3">
+            <input id="phone" type="text" class="form-control" maxlength="20" ng-model="addCustomer.data.phone" placeholder="Phone">
+          </div>
+        </div>
+
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Address</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" ng-model="addCustomer.data.address.state" placeholder="State">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" ng-model="addCustomer.data.address.city" placeholder="City">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" ng-model="addCustomer.data.address.street" placeholder="Street">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" ng-model="addCustomer.data.address.zip" placeholder="Zip code">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-2">
+          <input type="button" class="btn btn-primary btn-block" value="SAVE" ng-click="addCustomer.save(addCustomer.data)">
+        </div>
+        <div class="col-sm-2">
+          <input type="button" class="btn btn-danger btn-block" value="RESET" ng-click="addCustomer.reset()">
+        </div>
+      </div>
+    </form>
+    <hr>
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <tr>
+      <th><a href="" ng-click="sortBy('name')">Name</a></th>
+      <th><a href="" ng-click="sortBy('phone')">Phone</a></th>
+      <th><a href="" ng-click="sortBy('email')">E-mail</a></th>
+      <th><a href="" ng-click="sortBy('address.street')">Address</a></th>
+      <th></th><th></th>
+    </tr>
+    <tr ng-repeat="person in data | filter: searchQuery | orderBy: sortVal:reverse">
+      <td>{{person.name}}</td>
+      <td>{{person.phone}}</td>
+      <td>{{person.email}}</td>
+      <td>{{person.address.street}}, {{person.address.city}}, {{person.address.state}}, {{person.address.zip}}</td>
+      <td><a href="" ng-click="addCustomer.edit(person)">Edit</a></td>
+      <td><a href="" ng-click="addCustomer.remove(person)">Remove</a></td>
+    </tr>
+  </table>
+</div>

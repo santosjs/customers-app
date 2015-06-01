@@ -1,0 +1,13 @@
+{
+	"name": "customers-app",
+	"version": "0.0.1",
+	"dependencies": {
+	    "angular": "latest",
+    	"angular-resource": "latest",
+    	"angular-route": "latest",
+    	"bootstrap-sass": "latest"
+	},
+	"devDependencies": {
+		"angular-mocks": "latest"
+	}
+}
